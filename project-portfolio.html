@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Documentación pública bilingüe del portafolio profesional y portal de clientes de Romulo Guerra." />
+    <meta name="theme-color" content="#080b0d" />
+    <title>Portafolio y portal de clientes | Proyecto</title>
+    <link rel="icon" href="/public/images/branding/logo-rg.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/reset.css" />
+    <link rel="stylesheet" href="/src/styles/variables.css" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="/src/styles/project-detail.css" />
+  </head>
+  <body class="project-detail-page">
+    <header class="project-detail-header">
+      <a href="/" aria-label="Volver al portafolio"><img src="/public/images/branding/logo-rg.png" alt="" /></a>
+      <nav aria-label="Idioma de la documentación">
+        <button type="button" data-doc-language="es" class="active">ES</button>
+        <button type="button" data-doc-language="en">EN</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="project-detail-hero">
+        <img src="/public/images/profile/hero-romulo-guerra.jpg" alt="Portafolio profesional de Romulo Guerra" />
+        <div>
+          <p>Case study · Full Stack</p>
+          <h1>Portafolio profesional<br />y portal de clientes</h1>
+          <ul><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Node.js</li><li>PostgreSQL</li></ul>
+        </div>
+      </section>
+
+      <article class="project-document active" data-doc="es">
+        <p class="project-eyebrow">Documentación pública · Español</p>
+        <h2>Resumen</h2>
+        <p>Aplicación web Full Stack que reúne un portafolio profesional, autenticación segura y dos experiencias privadas: un centro de control para administración y un portal independiente para clientes.</p>
+
+        <h2>Objetivo</h2>
+        <p>Centralizar la presentación profesional, la captación de contactos y la gestión de proyectos en una única plataforma, evitando depender de cambios manuales en el código para las tareas operativas habituales.</p>
+
+        <h2>Funciones principales</h2>
+        <ul>
+          <li>Portafolio público responsive con proyectos administrables.</li>
+          <li>Registro, inicio y cierre de sesión con permisos por rol.</li>
+          <li>Panel administrador para usuarios, proyectos, solicitudes y contactos.</li>
+          <li>Portal cliente para seguimiento, nuevas solicitudes y cambios.</li>
+          <li>Publicación de proyectos con imagen almacenada en PostgreSQL.</li>
+          <li>Formulario de contacto persistente y preparado para SMTP.</li>
+          <li>Chat web preparado para automatización mediante n8n y WhatsApp Business.</li>
+          <li>Interfaz disponible en español, inglés e italiano.</li>
+        </ul>
+
+        <h2>Tecnologías y arquitectura</h2>
+        <p>El frontend utiliza HTML semántico, CSS responsive y JavaScript modular sin framework. El backend está construido con Node.js y su servidor HTTP nativo. PostgreSQL ofrece persistencia mediante el paquete <code>pg</code>; <code>dotenv</code> administra configuración por entorno y <code>Nodemailer</code> integra el correo SMTP.</p>
+        <p>La arquitectura separa rutas HTTP, servicios de dominio, middleware de autenticación, validadores y repositorios. Esta división permite probar la lógica con memoria y utilizar PostgreSQL en ejecución real.</p>
+
+        <h2>Seguridad</h2>
+        <p>Las contraseñas se protegen con derivación criptográfica y salt individual. Las sesiones utilizan tokens aleatorios guardados únicamente como hash, cookies HttpOnly y comprobaciones de rol en el servidor. La documentación no incluye credenciales, tokens, direcciones privadas ni secretos de infraestructura.</p>
+      </article>
+
+      <article class="project-document" data-doc="en" hidden>
+        <p class="project-eyebrow">Public documentation · English</p>
+        <h2>Overview</h2>
+        <p>A Full Stack web application combining a professional portfolio, secure authentication and two private experiences: an administration control center and a separate client portal.</p>
+
+        <h2>Goal</h2>
+        <p>Centralize professional presentation, contact acquisition and project management in a single platform while avoiding manual code changes for routine operational tasks.</p>
+
+        <h2>Core features</h2>
+        <ul>
+          <li>Responsive public portfolio with administrable projects.</li>
+          <li>Registration, sign-in and sign-out with role-based permissions.</li>
+          <li>Admin dashboard for users, projects, requests and contacts.</li>
+          <li>Client portal for progress tracking, new requests and changes.</li>
+          <li>Project publishing with images stored in PostgreSQL.</li>
+          <li>Persistent contact form prepared for SMTP delivery.</li>
+          <li>Website chat prepared for n8n and WhatsApp Business automation.</li>
+          <li>Interface support for Spanish, English and Italian.</li>
+        </ul>
+
+        <h2>Technology and architecture</h2>
+        <p>The frontend uses semantic HTML, responsive CSS and modular JavaScript without a framework. The backend is built with Node.js and its native HTTP server. PostgreSQL provides persistence through the <code>pg</code> package; <code>dotenv</code> manages environment configuration and <code>Nodemailer</code> handles SMTP integration.</p>
+        <p>The architecture separates HTTP routes, domain services, authentication middleware, validators and repositories. This makes it possible to test the logic in memory while using PostgreSQL in the real environment.</p>
+
+        <h2>Security</h2>
+        <p>Passwords are protected with cryptographic derivation and an individual salt. Sessions use random tokens stored only as hashes, HttpOnly cookies and server-side role checks. This documentation contains no credentials, tokens, private addresses or infrastructure secrets.</p>
+      </article>
+    </main>
+
+    <script type="module" src="/src/scripts/project-detail.js"></script>
+  </body>
+</html>

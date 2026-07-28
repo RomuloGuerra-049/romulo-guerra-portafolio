@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portal privado de proyectos de Romulo Guerra." />
+    <meta name="theme-color" content="#080b0d" />
+    <title>Portal de clientes | Romulo Guerra</title>
+    <link rel="icon" href="/public/images/branding/logo-rg.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/reset.css" />
+    <link rel="stylesheet" href="/src/styles/variables.css" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="/src/styles/dashboard.css" />
+  </head>
+  <body class="portal-page">
+    <div class="portal-loading" data-loading>
+      <span></span>
+      <p>Preparando tu espacio…</p>
+    </div>
+
+    <div class="portal-shell" data-portal hidden>
+      <aside class="portal-sidebar" data-sidebar>
+        <div class="portal-brand">
+          <a href="/" aria-label="Ir al portafolio"><img src="/public/images/branding/logo-rg.png" alt="" /></a>
+          <button class="portal-close" type="button" data-menu-close aria-label="Cerrar menú">×</button>
+        </div>
+        <div class="portal-user">
+          <span class="portal-avatar" data-avatar>RG</span>
+          <div><strong data-user-name></strong><small data-user-role></small></div>
+        </div>
+        <nav class="portal-nav" aria-label="Navegación del portal">
+          <button class="active" type="button" data-view-button="overview"><span>⌂</span>Resumen</button>
+          <button type="button" data-view-button="projects"><span>◇</span>Mis proyectos</button>
+          <button type="button" data-view-button="new-request"><span>＋</span>Solicitar proyecto</button>
+          <button type="button" data-view-button="changes"><span>↗</span>Solicitudes de cambio</button>
+        </nav>
+        <div class="portal-sidebar__bottom">
+          <a href="/">← Portafolio público</a>
+          <button type="button" data-logout>Salir de la cuenta</button>
+        </div>
+      </aside>
+
+      <main class="portal-main">
+        <header class="portal-topbar">
+          <button class="portal-menu" type="button" data-menu-open aria-label="Abrir menú">☰</button>
+          <div>
+            <p data-today></p>
+            <strong>Portal de proyectos</strong>
+          </div>
+          <button class="notification-button" type="button" data-mark-read aria-label="Marcar notificaciones como leídas">
+            ◇ <span data-notification-count>0</span>
+          </button>
+        </header>
+
+        <div class="portal-content">
+          <section class="portal-view active" data-view="overview">
+            <div class="portal-heading">
+              <div>
+                <p class="portal-kicker">Panel personal</p>
+                <h1>Hola, <span data-first-name></span>.</h1>
+                <p data-welcome-copy>Aquí tienes el estado actual de tu trabajo.</p>
+              </div>
+              <button class="portal-primary" type="button" data-quick-action>Solicitar proyecto <span>→</span></button>
+            </div>
+            <div class="metric-grid" data-metrics></div>
+            <div class="portal-grid">
+              <section class="portal-panel portal-panel--wide">
+                <div class="panel-heading"><div><span>Proyectos</span><h2>Progreso actual</h2></div><button type="button" data-view-button="projects">Ver todos</button></div>
+                <div class="project-list" data-project-preview></div>
+              </section>
+              <section class="portal-panel">
+                <div class="panel-heading"><div><span>Notificaciones</span><h2>Por revisar</h2></div></div>
+                <div class="activity-list" data-notifications></div>
+              </section>
+              <section class="portal-panel">
+                <div class="panel-heading"><div><span>Historial</span><h2>Actividad reciente</h2></div></div>
+                <div class="activity-list" data-activity></div>
+              </section>
+            </div>
+          </section>
+
+          <section class="portal-view" data-view="projects" hidden>
+            <div class="portal-heading"><div><p class="portal-kicker">Proyectos</p><h1 data-projects-title>Mis proyectos</h1><p>Consulta el estado, las etapas y el avance registrado.</p></div></div>
+            <div class="project-cards" data-projects-list></div>
+          </section>
+
+          <section class="portal-view" data-view="new-request" hidden>
+            <div class="portal-heading"><div><p class="portal-kicker">Nueva oportunidad</p><h1>Solicitar un proyecto</h1><p>Cuéntame qué necesitas y recibirás una evaluación.</p></div></div>
+            <form class="portal-form" data-project-request-form>
+              <label><span>Nombre del proyecto</span><input name="name" required minlength="3" maxlength="120" /></label>
+              <label><span>Empresa (opcional)</span><input name="company" maxlength="120" /></label>
+              <label class="full"><span>Descripción</span><textarea name="description" required minlength="20" maxlength="3000"></textarea></label>
+              <label class="full"><span>Objetivo principal</span><textarea name="objective" required minlength="10" maxlength="1000"></textarea></label>
+              <label><span>Tipo de proyecto</span><select name="projectType" required><option value="">Selecciona una opción</option><option>Landing page</option><option>Sitio web corporativo</option><option>Tienda virtual</option><option>Aplicación web</option><option>Panel administrativo</option><option>Rediseño</option><option>Otro</option></select></label>
+              <label><span>Presupuesto aproximado</span><input name="approximateBudget" placeholder="Ej. $2.500.000" /></label>
+              <label><span>Fecha deseada</span><input name="desiredDate" type="date" /></label>
+              <div class="form-actions full"><button class="portal-primary" type="submit">Enviar solicitud <span>→</span></button><p class="portal-status" aria-live="polite"></p></div>
+            </form>
+          </section>
+
+          <section class="portal-view" data-view="changes" hidden>
+            <div class="portal-heading"><div><p class="portal-kicker">Seguimiento</p><h1>Solicitudes de cambio</h1><p>Historial de cambios solicitados para los proyectos.</p></div></div>
+            <div class="request-list" data-change-list></div>
+          </section>
+
+        </div>
+      </main>
+    </div>
+    <div class="portal-toast" data-toast role="status" aria-live="polite"></div>
+    <script type="module" src="/src/scripts/i18n.js"></script>
+    <script type="module" src="/src/scripts/dashboard.js"></script>
+  </body>
+</html>

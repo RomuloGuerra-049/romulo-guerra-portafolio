@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Acceso al portafolio de Romulo Guerra." />
+    <meta name="theme-color" content="#080b0d" />
+    <title>Acceso | Romulo Guerra</title>
+    <link rel="icon" href="/public/images/branding/logo-rg.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/reset.css" />
+    <link rel="stylesheet" href="/src/styles/variables.css" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="/src/styles/auth.css" />
+  </head>
+  <body class="auth-page">
+    <div class="auth-logo-loader" data-auth-loader hidden aria-live="polite">
+      <div><img src="/public/images/branding/logo-rg.png" alt="" /><span></span></div>
+      <p>Validando acceso seguro…</p>
+    </div>
+    <main class="auth-shell">
+      <a class="auth-back" href="/" aria-label="Volver al portafolio">
+        <span aria-hidden="true">←</span> Volver al portafolio
+      </a>
+
+      <section class="auth-stage" aria-labelledby="auth-title">
+        <div class="auth-story">
+          <p class="auth-kicker">Espacio personal</p>
+          <h1 id="auth-title">Ideas que encuentran un lugar para <em>crecer.</em></h1>
+          <p>
+            Accede a una experiencia preparada para futuros recursos, proyectos
+            privados y colaboraciones.
+          </p>
+          <div class="auth-orbit" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <img src="/public/images/branding/logo-rg.png" alt="" />
+          </div>
+          <p class="auth-quote">Diseño, código y propósito en un mismo espacio.</p>
+        </div>
+
+        <div class="auth-card" data-auth-card data-mode="login">
+          <div class="auth-tabs" role="tablist" aria-label="Acceso a cuenta">
+            <button
+              class="auth-tab active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="login-panel"
+              data-mode-button="login"
+            >
+              Iniciar sesión
+            </button>
+            <button
+              class="auth-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="register-panel"
+              data-mode-button="register"
+            >
+              Crear cuenta
+            </button>
+          </div>
+
+          <div class="auth-panels">
+            <form class="auth-form active" id="login-panel" data-auth-form="login">
+              <div class="auth-heading">
+                <span>Bienvenido de nuevo</span>
+                <h2>Continúa donde lo dejaste.</h2>
+              </div>
+              <label>
+                <span>Correo electrónico</span>
+                <input name="email" type="email" autocomplete="email" placeholder="tu@correo.com" required />
+              </label>
+              <label>
+                <span>Contraseña</span>
+                <span class="password-field">
+                  <input name="password" type="password" autocomplete="current-password" placeholder="Tu contraseña" required />
+                  <button type="button" data-password-toggle aria-label="Mostrar contraseña">Ver</button>
+                </span>
+              </label>
+              <button class="auth-submit" type="submit">
+                <span>Entrar a mi cuenta</span><span aria-hidden="true">→</span>
+              </button>
+              <p class="auth-status" aria-live="polite"></p>
+            </form>
+
+            <form class="auth-form" id="register-panel" data-auth-form="register" aria-hidden="true" inert>
+              <div class="auth-heading">
+                <span>Un nuevo comienzo</span>
+                <h2>Crea tu espacio personal.</h2>
+              </div>
+              <label>
+                <span>Nombre</span>
+                <input name="name" type="text" autocomplete="name" minlength="2" maxlength="80" placeholder="Tu nombre" required />
+              </label>
+              <label>
+                <span>Correo electrónico</span>
+                <input name="email" type="email" autocomplete="email" placeholder="tu@correo.com" required />
+              </label>
+              <label>
+                <span>Contraseña</span>
+                <span class="password-field">
+                  <input name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" placeholder="8+ caracteres y un número" required />
+                  <button type="button" data-password-toggle aria-label="Mostrar contraseña">Ver</button>
+                </span>
+              </label>
+              <label class="auth-consent">
+                <input name="terms" type="checkbox" required />
+                <span>Acepto el uso responsable de mis datos para gestionar la cuenta.</span>
+              </label>
+              <button class="auth-submit" type="submit">
+                <span>Crear mi cuenta</span><span aria-hidden="true">→</span>
+              </button>
+              <p class="auth-status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <p class="auth-security"><span aria-hidden="true">◇</span> Contraseñas protegidas con cifrado derivado.</p>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/scripts/i18n.js"></script>
+    <script type="module" src="/src/scripts/auth.js"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "romulo-guerra-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server/index.js",
+    "dev:watch": "node --watch server/index.js",
+    "start": "node server/index.js",
+    "db:migrate": "node server/database/migrate.js",
+    "test": "node --test",
+    "check": "node --check server/index.js && node --check server/database/migrate.js && node --check server/routes/api.js && node --check server/services/portal.js && node --check server/services/mail.js && node --check server/repositories/postgres.js && node --check src/scripts/api.js && node --check src/scripts/main.js && node --check src/scripts/auth.js && node --check src/scripts/dashboard.js && node --check src/scripts/admin.js && node --check src/scripts/admin-loader.js && node --check src/scripts/i18n.js && node --check src/scripts/chat.js && node --check src/scripts/project-detail.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "nodemailer": "^9.0.3",
+    "pg": "^8.22.0"
+  }
+}

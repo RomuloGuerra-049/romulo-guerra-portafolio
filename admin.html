@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Panel administrativo privado de Romulo Guerra." />
+    <meta name="theme-color" content="#080b0d" />
+    <title>Administración | Romulo Guerra</title>
+    <link rel="icon" href="/public/images/branding/logo-rg.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/reset.css" />
+    <link rel="stylesheet" href="/src/styles/variables.css" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="/src/styles/dashboard.css" />
+    <link rel="stylesheet" href="/src/styles/admin.css" />
+  </head>
+  <body class="portal-page admin-page">
+    <div class="portal-loading" data-loading>
+      <span></span>
+      <p>Abriendo centro de control…</p>
+    </div>
+
+    <div class="admin-shell" data-admin hidden>
+      <aside class="admin-rail" data-admin-nav>
+        <a class="admin-mark" href="/" aria-label="Portafolio público"><img src="/public/images/branding/logo-rg.png" alt="" /></a>
+        <nav aria-label="Administración">
+          <button class="active" type="button" data-admin-view-button="overview" title="Resumen"><span>⌂</span><small>Resumen</small></button>
+          <button type="button" data-admin-view-button="clients" title="Clientes"><span>◎</span><small>Clientes</small></button>
+          <button type="button" data-admin-view-button="projects" title="Proyectos"><span>◇</span><small>Proyectos</small></button>
+          <button type="button" data-admin-view-button="requests" title="Solicitudes"><span>↗</span><small>Solicitudes</small></button>
+          <button type="button" data-admin-view-button="create" title="Crear proyecto"><span>＋</span><small>Crear</small></button>
+          <button type="button" data-admin-view-button="portfolio" title="Portafolio público"><span>▣</span><small>Publicar</small></button>
+        </nav>
+        <button class="admin-logout" type="button" data-admin-logout title="Cerrar sesión"><span>←</span><small>Salir</small></button>
+      </aside>
+
+      <main class="admin-workspace">
+        <header class="admin-header">
+          <div>
+            <p>Centro de control</p>
+            <strong>Administración del portal</strong>
+          </div>
+          <div class="admin-identity">
+            <div><strong data-admin-name></strong><small>Propietario</small></div>
+            <span data-admin-avatar>RG</span>
+          </div>
+        </header>
+
+        <div class="admin-content">
+          <section class="admin-view active" data-admin-view="overview">
+            <div class="admin-hero">
+              <div>
+                <p class="portal-kicker">Visión general</p>
+                <h1>Controla tu operación<br /><span>desde un solo lugar.</span></h1>
+                <p data-admin-date></p>
+              </div>
+              <button class="portal-primary" type="button" data-admin-view-button="create">Crear proyecto <span>→</span></button>
+            </div>
+            <div class="admin-metrics" data-admin-metrics></div>
+            <div class="admin-overview-grid">
+              <section class="admin-card admin-card--large">
+                <div class="admin-card__heading"><div><span>Operación</span><h2>Proyectos recientes</h2></div><button type="button" data-admin-view-button="projects">Gestionar</button></div>
+                <div data-admin-project-preview></div>
+              </section>
+              <section class="admin-card">
+                <div class="admin-card__heading"><div><span>Entrada</span><h2>Solicitudes nuevas</h2></div></div>
+                <div class="admin-request-stack" data-admin-request-preview></div>
+              </section>
+              <section class="admin-card">
+                <div class="admin-card__heading"><div><span>Actividad</span><h2>Últimos movimientos</h2></div></div>
+                <div class="activity-list" data-admin-activity></div>
+              </section>
+            </div>
+          </section>
+
+          <section class="admin-view" data-admin-view="clients" hidden>
+            <div class="admin-section-heading"><div><p class="portal-kicker">Cuentas</p><h1>Clientes y accesos</h1><p>Administra quién puede entrar al portal.</p></div></div>
+            <div class="admin-table-card">
+              <div class="admin-table-header"><span>Usuario</span><span>Rol</span><span>Estado</span></div>
+              <div data-admin-users></div>
+            </div>
+          </section>
+
+          <section class="admin-view" data-admin-view="projects" hidden>
+            <div class="admin-section-heading"><div><p class="portal-kicker">Producción</p><h1>Todos los proyectos</h1><p>Actualiza el estado y el avance de cada trabajo.</p></div><button class="portal-primary" type="button" data-admin-view-button="create">Nuevo proyecto <span>＋</span></button></div>
+            <div class="admin-project-grid" data-admin-projects></div>
+          </section>
+
+          <section class="admin-view" data-admin-view="requests" hidden>
+            <div class="admin-section-heading"><div><p class="portal-kicker">Bandeja</p><h1>Solicitudes recibidas</h1><p>Nuevos proyectos y cambios enviados por clientes.</p></div></div>
+            <div class="admin-request-columns">
+              <section class="admin-card"><div class="admin-card__heading"><div><span>Proyectos</span><h2>Nuevas solicitudes</h2></div></div><div class="admin-request-stack" data-admin-requests></div></section>
+              <section class="admin-card"><div class="admin-card__heading"><div><span>Cambios</span><h2>Sobre proyectos activos</h2></div></div><div class="admin-request-stack" data-admin-changes></div></section>
+              <section class="admin-card admin-card--contacts"><div class="admin-card__heading"><div><span>Web pública</span><h2>Mensajes de contacto</h2></div></div><div class="admin-request-stack" data-admin-contacts></div></section>
+            </div>
+          </section>
+
+          <section class="admin-view" data-admin-view="create" hidden>
+            <div class="admin-section-heading"><div><p class="portal-kicker">Nuevo trabajo</p><h1>Crear y asignar proyecto</h1><p>El cliente recibirá una notificación en su portal.</p></div></div>
+            <form class="portal-form admin-create-form" data-admin-project-form>
+              <label><span>Cliente</span><select name="clientId" data-admin-client-select required></select></label>
+              <label><span>Nombre del proyecto</span><input name="name" required minlength="3" /></label>
+              <label class="full"><span>Descripción</span><textarea name="description" required minlength="10"></textarea></label>
+              <label><span>Tipo de servicio</span><input name="serviceType" required /></label>
+              <label><span>Estado inicial</span><select name="status"><option>Planificación</option><option>Diseño</option><option>Desarrollo</option><option>Pruebas</option><option>Revisión del cliente</option></select></label>
+              <label><span>Progreso</span><input name="progress" type="number" min="0" max="100" value="0" /></label>
+              <label><span>Prioridad</span><select name="priority"><option>Baja</option><option selected>Media</option><option>Alta</option></select></label>
+              <label><span>Entrega estimada</span><input name="estimatedDelivery" type="date" /></label>
+              <label><span>Presupuesto COP</span><input name="budget" type="number" min="0" value="0" /></label>
+              <div class="form-actions full"><button class="portal-primary" type="submit">Crear proyecto <span>→</span></button><p class="portal-status" aria-live="polite"></p></div>
+            </form>
+          </section>
+
+          <section class="admin-view" data-admin-view="portfolio" hidden>
+            <div class="admin-section-heading"><div><p class="portal-kicker">Sitio público</p><h1>Publicar en el portafolio</h1><p>Sube proyectos con imagen, tecnologías y enlaces sin editar código.</p></div></div>
+            <div class="admin-portfolio-layout">
+              <form class="portal-form admin-create-form admin-portfolio-form" data-admin-portfolio-form>
+                <label><span>Título</span><input name="title" required minlength="3" maxlength="120" /></label>
+                <label><span>Tecnologías</span><input name="technologies" placeholder="React, Node.js, PostgreSQL" /></label>
+                <label class="full"><span>Descripción</span><textarea name="description" required minlength="10" maxlength="2000"></textarea></label>
+                <label><span>Enlace de demostración</span><input name="demoUrl" type="url" placeholder="https://..." /></label>
+                <label><span>Repositorio</span><input name="repositoryUrl" type="url" placeholder="https://github.com/..." /></label>
+                <label class="full admin-file-field"><span>Imagen del proyecto (máximo 5 MB)</span><input name="imageFile" type="file" accept="image/jpeg,image/png,image/webp" required /><small data-admin-image-name>Selecciona una imagen JPG, PNG o WebP.</small></label>
+                <label class="admin-checkbox full"><input name="published" type="checkbox" checked /><span>Publicar inmediatamente</span></label>
+                <div class="form-actions full"><button class="portal-primary" type="submit">Publicar proyecto <span>→</span></button><p class="portal-status" aria-live="polite"></p></div>
+              </form>
+              <div class="admin-public-list" data-admin-public-projects></div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <div class="portal-toast" data-admin-toast role="status" aria-live="polite"></div>
+    <script src="/src/scripts/admin-loader.js"></script>
+    <script type="module" src="/src/scripts/i18n.js"></script>
+    <script type="module" src="/src/scripts/admin.js"></script>
+  </body>
+</html>
