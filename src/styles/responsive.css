@@ -208,10 +208,6 @@
     font-size: 1.75rem;
   }
 
-  .technology-card img.technology-card__icon {
-    height: 2rem;
-  }
-
   .timeline__item {
     grid-template-columns: 1fr;
     gap: 0.6rem;

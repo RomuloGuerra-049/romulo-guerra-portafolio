@@ -1,4 +1,5 @@
 import { apiUrl, fetchCredentials } from "./api.js";
+import { currentLanguage, translate } from "./i18n.js";
 
 const card = document.querySelector("[data-auth-card]");
 const modeButtons = document.querySelectorAll("[data-mode-button]");
@@ -36,8 +37,8 @@ document.querySelectorAll("[data-password-toggle]").forEach((button) => {
     const input = button.previousElementSibling;
     const show = input.type === "password";
     input.type = show ? "text" : "password";
-    button.textContent = show ? "Ocultar" : "Ver";
-    button.setAttribute("aria-label", show ? "Ocultar contraseña" : "Mostrar contraseña");
+    button.textContent = translate(show ? "Ocultar" : "Ver");
+    button.setAttribute("aria-label", translate(show ? "Ocultar contraseña" : "Mostrar contraseña"));
   });
 });
 
@@ -52,8 +53,9 @@ forms.forEach((form) => {
 
     submit.disabled = true;
     authLoader.hidden = false;
-    submit.querySelector("span").textContent =
-      mode === "login" ? "Ingresando…" : "Creando cuenta…";
+    submit.querySelector("span").textContent = translate(
+      mode === "login" ? "Ingresando…" : "Creando cuenta…",
+    );
     status.textContent = "";
     status.dataset.state = "";
 
@@ -66,7 +68,12 @@ forms.forEach((form) => {
       });
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.error || "No se pudo completar la solicitud.");
-      status.textContent = `Todo listo, ${result.user.name.split(" ")[0]}. Redirigiendo…`;
+      const firstName = result.user.name.split(" ")[0];
+      status.textContent = ({
+        es: `Todo listo, ${firstName}. Redirigiendo…`,
+        en: `All set, ${firstName}. Redirecting…`,
+        it: `Tutto pronto, ${firstName}. Reindirizzamento…`,
+      })[currentLanguage()];
       status.dataset.state = "success";
       card.classList.add("auth-card--success");
       window.setTimeout(
@@ -81,8 +88,9 @@ forms.forEach((form) => {
       requestAnimationFrame(() => card.classList.add("auth-card--shake"));
     } finally {
       submit.disabled = false;
-      submit.querySelector("span").textContent =
-        mode === "login" ? "Entrar a mi cuenta" : "Crear mi cuenta";
+      submit.querySelector("span").textContent = translate(
+        mode === "login" ? "Entrar a mi cuenta" : "Crear mi cuenta",
+      );
     }
   });
 });

@@ -17,19 +17,20 @@
   </head>
   <body class="project-detail-page">
     <header class="project-detail-header">
-      <a href="/" aria-label="Volver al portafolio"><img src="/public/images/branding/logo-rg.png" alt="" /></a>
-      <nav aria-label="Idioma de la documentación">
+      <a href="/" aria-label="Volver al portafolio" data-detail-back><img src="/public/images/branding/logo-rg.png" alt="" /></a>
+      <nav aria-label="Idioma de la documentación" data-detail-nav>
         <button type="button" data-doc-language="es" class="active">ES</button>
         <button type="button" data-doc-language="en">EN</button>
+        <button type="button" data-doc-language="it">IT</button>
       </nav>
     </header>
 
     <main>
       <section class="project-detail-hero">
-        <img src="/public/images/profile/hero-romulo-guerra.jpg" alt="Portafolio profesional de Romulo Guerra" />
+        <img src="/public/images/profile/hero-romulo-guerra.jpg" alt="Portafolio profesional de Romulo Guerra" data-detail-image />
         <div>
-          <p>Case study · Full Stack</p>
-          <h1>Portafolio profesional<br />y portal de clientes</h1>
+          <p data-detail-kicker>Caso de estudio · Full Stack</p>
+          <h1 data-detail-title>Portafolio profesional<br />y portal de clientes</h1>
           <ul><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Node.js</li><li>PostgreSQL</li></ul>
         </div>
       </section>
@@ -88,6 +89,34 @@
 
         <h2>Security</h2>
         <p>Passwords are protected with cryptographic derivation and an individual salt. Sessions use random tokens stored only as hashes, HttpOnly cookies and server-side role checks. This documentation contains no credentials, tokens, private addresses or infrastructure secrets.</p>
+      </article>
+
+      <article class="project-document" data-doc="it" hidden>
+        <p class="project-eyebrow">Documentazione pubblica · Italiano</p>
+        <h2>Panoramica</h2>
+        <p>Un'applicazione web Full Stack che combina un portfolio professionale, autenticazione sicura e due esperienze private: un centro di amministrazione e un portale clienti indipendente.</p>
+
+        <h2>Obiettivo</h2>
+        <p>Centralizzare la presentazione professionale, l'acquisizione di contatti e la gestione dei progetti in un'unica piattaforma, evitando modifiche manuali al codice per le attività operative abituali.</p>
+
+        <h2>Funzionalità principali</h2>
+        <ul>
+          <li>Portfolio pubblico responsive con progetti amministrabili.</li>
+          <li>Registrazione, accesso e disconnessione con autorizzazioni basate sui ruoli.</li>
+          <li>Dashboard amministratore per utenti, progetti, richieste e contatti.</li>
+          <li>Portale clienti per monitoraggio, nuove richieste e modifiche.</li>
+          <li>Pubblicazione di progetti con immagini archiviate in PostgreSQL.</li>
+          <li>Modulo di contatto persistente predisposto per SMTP.</li>
+          <li>Chat web predisposta per l'automazione con n8n e WhatsApp Business.</li>
+          <li>Interfaccia disponibile in spagnolo, inglese e italiano.</li>
+        </ul>
+
+        <h2>Tecnologia e architettura</h2>
+        <p>Il frontend utilizza HTML semantico, CSS responsive e JavaScript modulare senza framework. Il backend è costruito con Node.js e il suo server HTTP nativo. PostgreSQL fornisce la persistenza tramite il pacchetto <code>pg</code>; <code>dotenv</code> gestisce la configurazione degli ambienti e <code>Nodemailer</code> integra la posta SMTP.</p>
+        <p>L'architettura separa route HTTP, servizi di dominio, middleware di autenticazione, validatori e repository. Questa divisione permette di testare la logica in memoria e utilizzare PostgreSQL nell'ambiente reale.</p>
+
+        <h2>Sicurezza</h2>
+        <p>Le password sono protette mediante derivazione crittografica e salt individuale. Le sessioni utilizzano token casuali memorizzati esclusivamente come hash, cookie HttpOnly e controlli dei ruoli lato server. La documentazione non contiene credenziali, token, indirizzi privati o segreti dell'infrastruttura.</p>
       </article>
     </main>
 

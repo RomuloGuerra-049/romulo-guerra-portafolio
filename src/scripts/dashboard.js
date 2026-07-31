@@ -1,4 +1,5 @@
 import { apiUrl, fetchCredentials } from "./api.js";
+import { currentLocale, translate } from "./i18n.js";
 
 const state = { user: null, projects: [], requests: [], notifications: [], activity: [], changes: [] };
 const portal = document.querySelector("[data-portal]");
@@ -83,7 +84,7 @@ function render() {
   document.querySelector("[data-first-name]").textContent = user.name.split(" ")[0];
   document.querySelector("[data-avatar]").textContent = user.name.split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
   document.querySelector("[data-user-role]").textContent = ({ admin: "Administrador", client: "Cliente", collaborator: "Colaborador" })[user.role];
-  document.querySelector("[data-today]").textContent = new Intl.DateTimeFormat("es-CO", { weekday: "long", day: "numeric", month: "long" }).format(new Date());
+  document.querySelector("[data-today]").textContent = new Intl.DateTimeFormat(currentLocale(), { weekday: "long", day: "numeric", month: "long" }).format(new Date());
   document.querySelector("[data-projects-title]").textContent = "Mis proyectos";
   document.querySelector("[data-welcome-copy]").textContent = "Aquí tienes el estado actual de tu trabajo.";
   const quick = document.querySelector("[data-quick-action]");
@@ -99,16 +100,16 @@ function render() {
   document.querySelector("[data-project-preview]").innerHTML = projects.length ? projects.slice(0, 3).map((project) => projectMarkup(project, true)).join("") : empty("Todavía no hay proyectos", "Cuando se cree el primer proyecto aparecerá aquí.");
   document.querySelector("[data-projects-list]").innerHTML = projects.length ? projects.map((project) => projectMarkup(project)).join("") : empty("Todavía no hay proyectos", "Cuando se cree tu primer proyecto aparecerá aquí.");
   document.querySelector("[data-notifications]").innerHTML = notifications.length ? notifications.slice(0, 5).map((item) => `<article class="${item.read ? "" : "unread"}"><span>◇</span><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.message)}</p></div></article>`).join("") : empty("Todo al día", "No tienes notificaciones pendientes.");
-  document.querySelector("[data-activity]").innerHTML = activity.length ? activity.map((item) => `<article><span>↗</span><div><strong>${escapeHtml(item.description)}</strong><p>${new Intl.DateTimeFormat("es-CO", { dateStyle: "medium", timeStyle: "short" }).format(new Date(item.createdAt))}</p></div></article>`).join("") : empty("Sin actividad reciente", "Las acciones importantes aparecerán en este historial.");
+  document.querySelector("[data-activity]").innerHTML = activity.length ? activity.map((item) => `<article><span>↗</span><div><strong>${escapeHtml(item.description)}</strong><p>${new Intl.DateTimeFormat(currentLocale(), { dateStyle: "medium", timeStyle: "short" }).format(new Date(item.createdAt))}</p></div></article>`).join("") : empty("Sin actividad reciente", "Las acciones importantes aparecerán en este historial.");
   document.querySelector("[data-change-list]").innerHTML = state.changes.length ? state.changes.map((item) => `<article class="request-row"><div><span>${escapeHtml(item.type)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div><strong>${escapeHtml(item.status)}</strong></article>`).join("") : empty("Sin solicitudes de cambio", "Las solicitudes asociadas a proyectos aparecerán aquí.");
   bindDynamicActions();
 }
 
 function bindDynamicActions() {
   document.querySelectorAll("[data-change-project]").forEach((button) => button.addEventListener("click", async () => {
-    const title = window.prompt("Título breve del cambio");
+    const title = window.prompt(translate("Título breve del cambio"));
     if (!title) return;
-    const description = window.prompt("Describe el cambio que necesitas");
+    const description = window.prompt(translate("Describe el cambio que necesitas"));
     if (!description) return;
     try {
       const { request } = await api(`/api/projects/${button.dataset.changeProject}/change-requests`, { method: "POST", body: JSON.stringify({ title, description, type: "Cambio solicitado", priority: "Media" }) });
@@ -210,3 +211,6 @@ async function initialize() {
 }
 
 initialize();
+window.addEventListener("languagechange", () => {
+  if (state.user) render();
+});

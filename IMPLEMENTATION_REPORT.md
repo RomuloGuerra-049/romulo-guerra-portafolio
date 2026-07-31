@@ -75,7 +75,7 @@ Se conservaron las pruebas de autenticación y se añadieron pruebas para:
 - Propiedad de solicitudes.
 - Protección del listado de usuarios.
 
-Resultado: 8 pruebas aprobadas, 0 fallidas.
+Resultado actual: 10 pruebas aprobadas, 0 fallidas.
 
 También se ejecutó una prueba real contra el servidor:
 
@@ -134,3 +134,16 @@ npm run check
 
 Configura el administrador inicial con las variables ficticias explicadas en
 `.env.example`. No hay contraseñas reales en el repositorio.
+
+## Actualización de internacionalización y compatibilidad móvil
+
+- Se amplió la traducción dinámica para cubrir los textos del portafolio, la
+  autenticación, los paneles y la documentación del proyecto en español,
+  inglés e italiano.
+- Los mensajes generados por JavaScript también respetan el idioma seleccionado.
+- La documentación detallada del proyecto admite los tres idiomas.
+- El icono de Next.js dejó de depender de una imagen externa bloqueada por la
+  política de seguridad del servidor. Ahora utiliza la fuente de iconos Devicon,
+  igual que el resto de tecnologías, y conserva el tamaño responsive en móvil.
+- Se eliminaron los estilos específicos de la imagen anterior que ya no eran
+  necesarios.

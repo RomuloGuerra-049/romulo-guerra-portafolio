@@ -1,4 +1,5 @@
 import { apiUrl, fetchCredentials } from "./api.js";
+import { currentLocale, translate } from "./i18n.js";
 
 window.__adminModuleStarted = true;
 
@@ -144,7 +145,7 @@ function renderPublicPortfolio() {
 
   container.querySelectorAll("[data-delete-public-project]").forEach((button) => {
     button.addEventListener("click", async () => {
-      if (!window.confirm("¿Eliminar este proyecto del portafolio público?")) return;
+      if (!window.confirm(translate("¿Eliminar este proyecto del portafolio público?"))) return;
       try {
         await api(`/api/admin/portfolio/${button.dataset.deletePublicProject}`, {
           method: "DELETE",
@@ -207,7 +208,7 @@ function render() {
     .join("")
     .toUpperCase();
   document.querySelector("[data-admin-date]").textContent =
-    new Intl.DateTimeFormat("es-CO", { dateStyle: "full" }).format(new Date());
+    new Intl.DateTimeFormat(currentLocale(), { dateStyle: "full" }).format(new Date());
 
   const metrics = [
     ["Clientes", clients.length, "registrados"],
@@ -248,7 +249,7 @@ function render() {
       : empty("Sin mensajes", "Los mensajes del formulario aparecerán aquí.");
   document.querySelector("[data-admin-activity]").innerHTML =
     state.activity.length
-      ? state.activity.slice(0, 7).map((item) => `<article><span>↗</span><div><strong>${escapeHtml(item.description)}</strong><p>${new Intl.DateTimeFormat("es-CO", { dateStyle: "medium", timeStyle: "short" }).format(new Date(item.createdAt))}</p></div></article>`).join("")
+      ? state.activity.slice(0, 7).map((item) => `<article><span>↗</span><div><strong>${escapeHtml(item.description)}</strong><p>${new Intl.DateTimeFormat(currentLocale(), { dateStyle: "medium", timeStyle: "short" }).format(new Date(item.createdAt))}</p></div></article>`).join("")
       : empty("Sin actividad", "Los movimientos administrativos aparecerán aquí.");
 
   renderUsers();
@@ -256,7 +257,7 @@ function render() {
   bindProjectUpdates();
   document.querySelectorAll("[data-delete-contact]").forEach((button) => {
     button.addEventListener("click", async () => {
-      if (!window.confirm("¿Eliminar este mensaje?")) return;
+      if (!window.confirm(translate("¿Eliminar este mensaje?"))) return;
       try {
         await api(`/api/admin/contacts/${button.dataset.deleteContact}`, {
           method: "DELETE",
@@ -432,3 +433,6 @@ async function initialize() {
 }
 
 initialize();
+window.addEventListener("languagechange", () => {
+  if (state.user) render();
+});

@@ -194,23 +194,6 @@
   color: #f2f2f0;
 }
 
-.technology-card img.technology-card__icon {
-  height: 2.35rem;
-  object-fit: contain;
-}
-
-.technology-card__icon--invert {
-  filter:
-    invert(1)
-    drop-shadow(0 5px 10px rgba(0, 0, 0, 0.28));
-}
-
-.technology-card:hover .technology-card__icon--invert {
-  filter:
-    invert(1)
-    drop-shadow(0 7px 13px rgba(0, 0, 0, 0.4));
-}
-
 .project-card {
   overflow: hidden;
   border: 1px solid var(--color-line);
